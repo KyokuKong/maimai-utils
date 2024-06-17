@@ -10,7 +10,7 @@
 
 ## 安装
 ```shell
-pip install maimai-utils
+pip install maimai_utils
 ```
 
 ## 文档
@@ -20,3 +20,6 @@ pip install maimai-utils
 ## 常见问题
 
 ## 更新日志
+`0.1.1`
+* 第一次更新！
+* 现在可以通过`maiquery`来查找歌曲数据对象了
