@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "maimai-utils"
-version = "0.1.0"
+version = "0.1.2"
 authors = ["Kyoku <hf4develop@163.com>"]
 readme = "README.md"
 description = "`maimai-utils`是使用SEGA所属的街机音游maimai的数据进行开发的Python模块，用于快速查询游戏相关的数据。"
