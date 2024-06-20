@@ -2,7 +2,7 @@ from dataclasses import dataclass, asdict
 
 
 @dataclass
-class ChartData:
+class ChartEntity:
     level: int
     level_decimal: int
     notes_designer_id: int
@@ -24,7 +24,7 @@ class ChartData:
 
 
 @dataclass
-class SongData:
+class SongEntity:
     """
     存储谱面数据时使用的数据类
     """
@@ -43,7 +43,7 @@ class SongData:
     add_version_name: str
     release_id: int
     release_name: str
-    charts: list[ChartData]
+    charts: list[ChartEntity]
 
     def to_dict(self):
         data = asdict(self)

@@ -2,10 +2,10 @@ import json
 import os
 import re
 import xml.etree.ElementTree as et
-from maimai_utils.entity.chartsEntity import SongData, ChartData
+from maimai_utils.entity.chartsEntity import SongEntity, ChartEntity
 
 
-def parse_music_xml(xml_file_path: str) -> SongData:
+def parse_music_xml(xml_file_path: str) -> SongEntity:
     tree = et.parse(xml_file_path)
     root = tree.getroot()
 
@@ -42,7 +42,7 @@ def parse_music_xml(xml_file_path: str) -> SongData:
         ma2_file_path = os.path.join(os.path.dirname(xml_file_path), file_name)
         res = parse_ma2_file(ma2_file_path)
 
-        chart = ChartData(
+        chart = ChartEntity(
             level=level,
             level_decimal=level_decimal,
             notes_designer_id=notes_designer_id,
@@ -61,7 +61,7 @@ def parse_music_xml(xml_file_path: str) -> SongData:
         )
         charts.append(chart)
 
-    song_data = SongData(
+    song_data = SongEntity(
         music_id=music_id,
         music_name=music_name,
         bpm=bpm,

@@ -1,15 +1,15 @@
 import json
 import importlib.resources as pkg_resources
-from maimai_utils.entity.chartsEntity import SongData, ChartData
+from maimai_utils.entity.chartsEntity import SongEntity, ChartEntity
 
 
 def load_song_data_from_json():
     def chart_data_from_dict(data):
-        return ChartData(**data)
+        return ChartEntity(**data)
 
     def song_data_from_dict(data):
         charts = [chart_data_from_dict(chart) for chart in data['charts']]
-        return SongData(
+        return SongEntity(
             music_id=data['music_id'],
             music_name=data['music_name'],
             bpm=data['bpm'],
@@ -38,7 +38,40 @@ class MaiQuery:
     def __init__(self):
         self.song_data = load_song_data_from_json()
 
-    def find_song_by_music_id(self, music_id):
+    def find_chart_by_music_id_and_difficulty(self, music_id, difficulty):
+        for song in self.song_data:
+            if song.music_id == music_id:
+                try:
+                    chart = song.charts[difficulty]
+                    return chart
+                except IndexError:
+                    return None
+
+    def find_songs_by_difficulty(self, difficulty):
+        matching_songs = []
+
+        for song in self.song_data:
+            try:
+                if song.charts[difficulty]:
+                    matching_songs.append(song)
+            except IndexError:
+                pass
+
+        return matching_songs
+
+    def find_songs_by_difficulty_and_add_version(self, difficulty, add_version_id):
+        matching_songs = []
+
+        for song in self.song_data:
+            try:
+                if song.charts[difficulty] and song.add_version_id == add_version_id:
+                    matching_songs.append(song)
+            except IndexError:
+                pass
+
+        return matching_songs
+
+    def find_charts_by_music_id(self, music_id):
         for song in self.song_data:
             if song.music_id == music_id:
                 return song
