@@ -1,3 +1,3 @@
-from maimai_utils import maiquery
+from maimai_utils import maiquery, calculator
 
-print(maiquery.find_songs_by_difficulty_and_add_version(4, 21))
+print(calculator.get_score_rank(1000000))

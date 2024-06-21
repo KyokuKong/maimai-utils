@@ -14,6 +14,7 @@ class ScoresEntity:
     hold_goods: int = 0
     hold_greats: int = 0
     hold_perfect: int = 0
+    hold_critical_perfect: int = 0
     slide_miss: int = 0
     slide_goods: int = 0
     slide_greats: int = 0
@@ -25,3 +26,5 @@ class ScoresEntity:
     break_greats_high: int = 0
     break_perfect_low: int = 0
     break_perfect_medium: int = 0
+    break_critical_perfect: int = 0
+    
