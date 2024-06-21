@@ -183,7 +183,7 @@ def new_all_perfect_score(music_id, difficulty):
         if calc_res:
             acc: int = calc_res[0]
             dx_score: int = calc_res[1]
-            return MusicDetailEntity(acc, dx_score, res.max_notes, 3, 0, get_score_rank(acc), score)
+            return MusicDetailEntity(acc, dx_score, res.max_notes, res.max_notes, 3, 0, get_score_rank(acc), score)
         
 
 
