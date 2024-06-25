@@ -146,6 +146,7 @@ def new_score(
 
 
 def new_all_perfect_score(music_id, difficulty):
+    """随机生成一个AP成绩对象"""
     # 拉取歌曲信息
     res = maiquery.find_chart_by_music_id_and_difficulty(music_id, difficulty)
     if res:
@@ -184,6 +185,26 @@ def new_all_perfect_score(music_id, difficulty):
             acc: int = calc_res[0]
             dx_score: int = calc_res[1]
             return MusicDetailEntity(acc, dx_score, res.max_notes, res.max_notes, 3, 0, get_score_rank(acc), score)
+
+
+def new_empty_score(music_id, difficulty):
+    """生成一个成绩数据为空的成绩对象"""
+    res = maiquery.find_chart_by_music_id_and_difficulty(music_id, difficulty)
+    if res:
+        # 得到总其他音符数量和总break数量
+        all_tap = res.tap_num + res.touch_num
+        all_hold = res.hold_num + res.touch_hold_num
+        all_slide = res.slide_num
+        all_break = res.break_num
+        score =  new_score(
+            music_id,
+            difficulty,
+            tap_miss=all_tap,
+            hold_miss=all_hold,
+            slide_miss=all_slide,
+            break_miss=all_break
+        )
+        return MusicDetailEntity(0, 0, 0, res.max_notes, 0, 0, 0, score)
         
 
 
